@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyBehaviours : CharacterBehaviours
 {
+    
+    #region Override Method
+    
     protected override int GetDamage(float damage)
     {
         throw new System.NotImplementedException();
@@ -33,4 +36,7 @@ public class EnemyBehaviours : CharacterBehaviours
     {
         throw new System.NotImplementedException();
     }
+    
+    #endregion
+    
 }

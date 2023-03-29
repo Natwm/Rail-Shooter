@@ -7,7 +7,7 @@ public class BodyPartBehaviours : TokenBehaviours
 {
     private List<IObserver<float>> _ListofObserver = new List<IObserver<float>>();
 
-    [SerializeField][Min(1)]protected float _DamageMultiplicator;
+    [SerializeField] [Min(1)] protected float _DamageMultiplicator;
 
     private void Update()
     {
@@ -17,20 +17,27 @@ public class BodyPartBehaviours : TokenBehaviours
         }
     }
 
+    #region Observer
+
     public void NotifyObserver(float param)
     {
-        _ListofObserver.ForEach((observer)=>observer.GetNotify(param));
+        _ListofObserver.ForEach((observer) => observer.GetNotify(param));
     }
 
     public void AddObserver(IObserver<float> subject)
     {
         _ListofObserver.Add(subject);
     }
-    
+
     public void RemoveObserver(IObserver<float> subject)
     {
         _ListofObserver.Remove(subject);
     }
+
+    #endregion
+
+
+    #region Override Methods
 
     protected override int GetDamage(float damage)
     {
@@ -38,9 +45,9 @@ public class BodyPartBehaviours : TokenBehaviours
             return -1;
 
         float value = damage * _DamageMultiplicator;
-        
+
         NotifyObserver(value);
-        
+
         return 1;
     }
 
@@ -53,4 +60,6 @@ public class BodyPartBehaviours : TokenBehaviours
     {
         throw new NotImplementedException();
     }
+
+    #endregion
 }

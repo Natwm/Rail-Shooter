@@ -6,6 +6,8 @@ public class DestructibleBodyPart : BodyPartBehaviours
 {
     [SerializeField] private float _LifePoint;
 
+    
+    #region Override Method
     protected override int GetDamage(float damage)
     {
         bool doGetDamage = base.GetDamage(damage) > 0;
@@ -23,5 +25,7 @@ public class DestructibleBodyPart : BodyPartBehaviours
     {
         return _LifePoint < 0;
     }
+    #endregion
+    
     
 }

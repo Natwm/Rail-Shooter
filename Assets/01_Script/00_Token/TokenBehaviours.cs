@@ -6,9 +6,13 @@ public abstract class TokenBehaviours : MonoBehaviour
 {
     [SerializeField] protected float _LifePoint;
     private IDamageable m_DamageableImplementation;
+    
+    #region Abstract Methods
     protected abstract int GetDamage(float damage);
 
     protected abstract bool GetKill();
 
     protected abstract bool IsDead();
+    
+    #endregion
 }

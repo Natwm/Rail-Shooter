@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerBehaviours : CharacterBehaviours
 {
     
+    #region Override Method
+    
     protected override int GetDamage(float damage)
     {
         if (damage < 0)
@@ -44,4 +46,7 @@ public class PlayerBehaviours : CharacterBehaviours
     {
         throw new System.NotImplementedException();
     }
+    
+    #endregion
+    
 }
