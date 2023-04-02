@@ -26,9 +26,17 @@ public class CharacterShootingSystem : MonoBehaviour
         mousePosition.z = Camera.main.nearClipPlane;
         
         Ray ShootingRay = Camera.main.ScreenPointToRay(mousePosition);
-        
 
-        Debug.DrawRay(ShootingRay.origin,ShootingRay.direction * 1000, Color.green,10f);
+        RaycastHit hitData;
         
+        if (Physics.Raycast(ShootingRay, out hitData, Mathf.Infinity))
+        {
+
+            print("You hit something");
+
+        }
+
+        Debug.DrawRay(ShootingRay.origin,ShootingRay.direction * 1000,
+            hitData.collider == null ? Color.green : Color.red,10f);
     }
 }
