@@ -52,13 +52,13 @@ public class WeaponScriptableObject : ScriptableObject
             }
             
         _CurrentAmountOfBulletsInMagazin--;
-        /*GameObject bullet = Instantiate(_BulletsPrefabs);
+        GameObject bullet = Instantiate(_BulletsPrefabs);
         Rigidbody RB_Bullets = _BulletsPrefabs.GetComponent<Rigidbody>();
         
         RB_Bullets.AddForce(Vector3.forward * _BulletsSpeed,ForceMode.Impulse);
         
         if(_MuzzleFlashEffect != null)
-            _MuzzleFlashEffect.Play();*/
+            _MuzzleFlashEffect.Play();
 
     }
 
