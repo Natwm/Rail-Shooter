@@ -8,7 +8,7 @@ public class DestructibleBodyPart : BodyPartBehaviours
 
     
     #region Override Method
-    protected override int GetDamage(float damage)
+    public override int GetDamage(float damage)
     {
         bool doGetDamage = base.GetDamage(damage) > 0;
 

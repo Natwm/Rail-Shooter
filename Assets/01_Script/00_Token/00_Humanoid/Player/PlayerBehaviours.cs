@@ -1,13 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerBehaviours : CharacterBehaviours
 {
-    
+    public TMPro.TMP_Text weaponInfo;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            _CurrentWeapon = _ListOfWeapon[1];
+            weaponInfo.text = "Current weapon : Instantiate a bullet";
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            _CurrentWeapon = _ListOfWeapon[0];
+            weaponInfo.text = "Current weapon : RayCast";
+        }
+    }
+
     #region Override Method
     
-    protected override int GetDamage(float damage)
+    public override int GetDamage(float damage)
     {
         if (damage < 0)
             return -1;

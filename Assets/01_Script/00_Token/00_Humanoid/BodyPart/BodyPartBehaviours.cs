@@ -8,14 +8,7 @@ public class BodyPartBehaviours : TokenBehaviours
     private List<IObserver<float>> _ListofObserver = new List<IObserver<float>>();
 
     [SerializeField] [Min(1)] protected float _DamageMultiplicator;
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            GetDamage(2);
-        }
-    }
+    
 
     #region Observer
 
@@ -39,7 +32,7 @@ public class BodyPartBehaviours : TokenBehaviours
 
     #region Override Methods
 
-    protected override int GetDamage(float damage)
+    public override int GetDamage(float damage)
     {
         if (damage < 0)
             return -1;
@@ -58,7 +51,7 @@ public class BodyPartBehaviours : TokenBehaviours
 
     protected override bool IsDead()
     {
-        throw new NotImplementedException();
+        return _LifePoint < 0;
     }
 
     #endregion
