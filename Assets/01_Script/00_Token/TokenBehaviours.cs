@@ -5,10 +5,12 @@ using UnityEngine;
 public abstract class TokenBehaviours : MonoBehaviour
 {
     [SerializeField] protected float _LifePoint;
+    [Header("Render")] [SerializeField] protected MeshRenderer characterRenderer;
+
     private IDamageable m_DamageableImplementation;
     
     #region Abstract Methods
-    protected abstract int GetDamage(float damage);
+    public abstract int GetDamage(float damage);
 
     protected abstract bool GetKill();
 
