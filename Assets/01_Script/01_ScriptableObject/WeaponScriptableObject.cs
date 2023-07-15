@@ -121,6 +121,10 @@ public class WeaponScriptableObject : ScriptableObject
             {
                 shootingObject.GetDamage(_BulletsDamage);
             }
+            if (hitData.collider.gameObject.transform.parent.gameObject.TryGetComponent<TokenBehaviours>(out TokenBehaviours shootingObjectOnParent))
+            {
+                shootingObjectOnParent.GetDamage(_BulletsDamage);
+            }
         }
 
         Debug.DrawRay(direction.origin,direction.direction * 1000,
