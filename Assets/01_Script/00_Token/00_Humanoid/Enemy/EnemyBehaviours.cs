@@ -4,22 +4,39 @@ using UnityEngine;
 
 public class EnemyBehaviours : CharacterBehaviours
 {
+    [SerializeField] private TMPro.TextMeshPro textInfo;
     
     #region Override Method
     
-    protected override int GetDamage(float damage)
+    public override int GetDamage(float damage)
     {
-        throw new System.NotImplementedException();
+        if(damage < 0)
+            Debug.LogError("damage can't be negatif");
+
+        _LifePoint -= damage;
+
+        textInfo.text = "Life : " + _LifePoint;
+        
+        if (IsDead())
+        {
+            GetKill();
+        }
+        
+        return (int)damage;
+        //throw new System.NotImplementedException();
     }
 
     protected override bool GetKill()
     {
-        throw new System.NotImplementedException();
+        characterRenderer.material.color = Color.red;
+        textInfo.text = "dead";
+        Destroy(gameObject,1f);
+        return true;
     }
 
     protected override bool IsDead()
     {
-        throw new System.NotImplementedException();
+        return _LifePoint <= 0;
     }
 
     protected override void Hide()

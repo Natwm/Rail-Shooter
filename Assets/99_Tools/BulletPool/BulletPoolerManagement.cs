@@ -20,29 +20,26 @@ public class BulletPoolerManagement : Singleton<BulletPoolerManagement>
         }
     }
 
-    private void Update()
-    {
-        if (Input.anyKey)
-            GetBullet();
-    }
-
-    public BulletBehaviours GetBullet()
+    public BulletBehaviours GetBullet(Vector3 position, float damage)
     {
         for (int i = 0; i < _Bullets.Count; i++)
         {
             if (!_Bullets[i].gameObject.activeInHierarchy)
             {
+                _Bullets[i].gameObject.transform.position = position;
                 _Bullets[i].gameObject.SetActive(true);
+                _Bullets[i].SetDamage(damage);
                 return _Bullets[i];
             }
         }
         
         GameObject obj = Instantiate(BulletsPrefab);
         obj.SetActive(true);
+        obj.transform.position = position;
         BulletBehaviours bullets = obj.GetComponent<BulletBehaviours>();
         _Bullets.Add(bullets);
         
-        return null;
+        return bullets;
     }
 
     public void ResetBullet(BulletBehaviours bullet)
