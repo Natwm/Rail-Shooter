@@ -14,7 +14,7 @@ public class BodyPartBehaviours : TokenBehaviours
 
     public void NotifyObserver(float param)
     {
-        _ListofObserver.ForEach((observer) => observer.GetNotify(param));
+        _ListofObserver.ForEach((observer) => observer.OnNotify(param));
     }
 
     public void AddObserver(IObserver<float> subject)
