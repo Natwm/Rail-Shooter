@@ -22,11 +22,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _DisplayTexture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 27b58dc24009b67459ee3f2dff91c042, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainBaseColor:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: b3511fa25719a284c8ffdeb149a6125f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_9c4a7f9fd21d4090aa883e67e8887e6d_Texture_1:
@@ -55,11 +55,12 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SimpleNoiseScale: 24
+    - _Switch: 0
     m_Colors:
-    - _DirtColor: {r: 0, g: 0, b: 0, a: 0}
-    - _DisplayColor: {r: 0, g: 0, b: 0, a: 0}
-    - _DisplayColor_1: {r: 0, g: 0, b: 0, a: 0}
-    - _MainColor: {r: 0, g: 0, b: 0, a: 0}
+    - _DirtColor: {r: 1, g: 1, b: 1, a: 0}
+    - _DisplayColor: {r: 1, g: 1, b: 1, a: 0}
+    - _DisplayColor_1: {r: 1, g: 1, b: 1, a: 0}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 0}
     - _TilingDisplayTexture: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7265770755633584335
