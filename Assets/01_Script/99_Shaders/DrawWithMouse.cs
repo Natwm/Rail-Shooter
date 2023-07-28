@@ -5,24 +5,30 @@ public class DrawWithMouse : Singleton<DrawWithMouse>
 {
     [SerializeField] private GameObject raycastObject;
     [SerializeField] private Shader drawShader;
+    [SerializeField] private Shader paintShader;
     [SerializeField] private Vector2Int renderTextureSize = new Vector2Int(1024, 1024);
     private Material drawMaterial;
     private Material currentMaterial;
-    public RenderTexture splatMap;
+    private RenderTexture splatMap;
     public Color eraseColor;
     public int rayCastDistance = 2;
     
     [SerializeField][Range(1, 500)] private float size;
     [SerializeField][Range(-1, 1)] private float strength;
     public Material eraseMaterial; // The material with the erase shader
-    public Texture2D textureToErase; // The texture to be erased
 
     public LayerMask collisionLayer;
+    private void Awake()
+    {
+        Material material = new Material(paintShader);
+        gameObject.GetComponent<Renderer>().material = material;
+    }
     private void Start()
     {
         drawMaterial = new Material(drawShader);
         currentMaterial = GetComponent<MeshRenderer>().material;
         splatMap = new RenderTexture(renderTextureSize.x, renderTextureSize.y, 0, RenderTextureFormat.ARGBFloat);
+        splatMap.Create();
         currentMaterial.SetTexture("_SplatMap", splatMap);
         
     }
