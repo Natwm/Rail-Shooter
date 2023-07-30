@@ -1,15 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 public abstract class CharacterBehaviours : TokenBehaviours,IObserver<float>
 {
-    [SerializeField] private List<BodyPartBehaviours> _ListOfBodyPart;
+    [BoxGroup("Body")][SerializeField] private List<BodyPartBehaviours> _ListOfBodyPart;
 
-    [SerializeField] protected List<WeaponScriptableObject> _ListOfWeapon;
+    [BoxGroup("Weapon")][SerializeField] protected List<WeaponScriptableObject> _ListOfWeapon;
 
-    [SerializeField] protected WeaponScriptableObject _CurrentWeapon;
+    [BoxGroup("Weapon")][SerializeField] protected WeaponScriptableObject _CurrentWeapon;
 
     
     public WeaponScriptableObject CurrentWeapon => _CurrentWeapon;
@@ -36,11 +37,11 @@ public abstract class CharacterBehaviours : TokenBehaviours,IObserver<float>
     
     #region Observer Subject
 
-    public void GetNotify(float param)
+    public void OnNotify(float param)
     {
         GetDamage(param);
     }
 
     #endregion
-    
+
 }

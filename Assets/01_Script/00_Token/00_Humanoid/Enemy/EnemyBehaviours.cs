@@ -1,11 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyBehaviours : CharacterBehaviours
 {
+    [BoxGroup("IA")] [SerializeField] private NavMeshAgent movementIA;
+    [BoxGroup("IA")] [SerializeField] private Transform pos;
     [SerializeField] private TMPro.TextMeshPro textInfo;
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            movementIA.Move(pos.position);
+            print("done");            
+        }
+    }
+
     #region Override Method
     
     public override int GetDamage(float damage)
