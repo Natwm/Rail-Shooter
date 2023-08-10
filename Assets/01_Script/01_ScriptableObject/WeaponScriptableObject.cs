@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering.Universal;
 
 [CreateAssetMenu(fileName = "Gun", menuName = "New Scriptable Object/New Weapon")]
 public class WeaponScriptableObject : ScriptableObject
@@ -23,6 +25,7 @@ public class WeaponScriptableObject : ScriptableObject
     [Header("Visual")]
     [SerializeField] private GameObject _GunVisual;
     [SerializeField] private ParticleSystem _MuzzleFlashEffect;
+    [SerializeField] private GameObject _BulletHoleDecal;
 
     [Header("Bullets")]
     [SerializeField] private int _CurrentAmountOfBulletsInMagazin;
@@ -113,13 +116,19 @@ public class WeaponScriptableObject : ScriptableObject
     private void ShootHitMarker(Vector3 position, Ray direction)
     {
         RaycastHit hitData;
-        
         if (Physics.Raycast(direction, out hitData, Mathf.Infinity))
         {
+
             Debug.Log("You hit something");
             if (hitData.collider.gameObject.TryGetComponent<TokenBehaviours>(out TokenBehaviours shootingObject))
             {
                 shootingObject.GetDamage(_BulletsDamage);
+                AddBulletHoleDecal(hitData.point, hitData.normal);
+            }
+            else
+            {
+                Debug.Log("hit something other than tokenbehaviours");
+                AddBulletHoleDecal(hitData.point, hitData.normal);
             }
         }
 
@@ -193,6 +202,22 @@ public class WeaponScriptableObject : ScriptableObject
     private bool IsReloadTimerAvailable()
     {
         return _ReloadTimer != null;
+    }
+    private void AddBulletHoleDecal(Vector3 targetHit, Vector3 targetNormal)
+    {
+        if (_BulletHoleDecal != null)
+        {
+            Debug.Log("hop it does");
+            GameObject decal = Instantiate(_BulletHoleDecal, targetHit, Quaternion.identity);
+            DecalProjector projector = decal.GetComponent<DecalProjector>();
+            if (projector != null)
+            {
+                decal.transform.position = targetHit + (targetNormal * .01f);
+                decal.transform.rotation = Quaternion.FromToRotation(-Vector3.forward, targetNormal.normalized);
+            }
+        }
+        else
+            Debug.LogWarning("No decal added do scriptable object");
     }
     
 }

@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _GunVisual: {fileID: 0}
   _MuzzleFlashEffect: {fileID: 0}
-  _CurrentAmountOfBulletsInMagazin: 0
-  _CurrentAmountOfBulletsReserve: 978
+  _BulletHoleDecal: {fileID: 3038034904791861055, guid: e3074001385b22b469c3612c241a37ab,
+    type: 3}
+  _CurrentAmountOfBulletsInMagazin: 5
+  _CurrentAmountOfBulletsReserve: 950
   _MaxAmountOfBulletsPerMagazin: 10
   _MaxAmountOfBullets: 500
   _BulletsPrefabs: {fileID: 7013299758493252200, guid: 4593ce21a3a4dd041b5dc8d4a9edb8da,
